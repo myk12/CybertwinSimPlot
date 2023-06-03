@@ -1,34 +1,45 @@
-set terminal pdfcairo enhanced font "Arial,12"
-set output "bar_chart.pdf"
+set term pdfcairo enhanced color size 50cm, 12cm
+set output 'heatmap.pdf'
 
-set title "Delay of receiving the first data packet" font ",14" tc rgb "#606060"
-#set xlabel "Category"
-set ylabel "Delay(ms)"
+set xlabel "edge delay(ms)" font ", 20"
+set ylabel "core delay(ms)" font ", 20"
+set xtics font ", 20"
+set ytics font ", 20"
 
-# offset
+#set palette maxcolors 2500
+#set cbtics 0,100,2500 scale 2 offset -3.5, 1.5
+#set cbrange [0:2500]
 
-# set bar format
-set boxwidth 0.9
-set style data histograms
-set style fill solid 1.00
+set multiplot layout 1,3
 
-# y-axis number format
-set tic scale 0
-set grid ytics
-set yrange [0 to 2000]
-#set xrange [0 to 4]
-
-# remove border
+set datafile separator comma
 unset border
-
-# 定义颜色列表
-set linetype 1 lc rgb "#32057B"
-set linetype 2 lc rgb "#7D3200"
-set linetype 3 lc rgb "#005453"
-
-# 加载数据文件并绘制柱状图
-plot 'mobility-core-10-edge-50.dat'  using 2:xticlabels(1) linecolor 1 title "e2e delay 30ms", \
-     'mobility-core-50-edge-50.dat' using 2  linecolor 2 title "e2e delay 50ms", \
-     'mobility-core-100-edge-50.dat' using 2 linecolor 3 title "e2e delay 100ms"
+######################
+#    Plot Figure 1   #
+######################
+set origin 0.01,0.1; set size 0.33, 0.9;
+set palette defined (0 '#ffffff', 0.5 '#008000', 1 '#ffd700')
+set cbrange [10:300]
+set title "a) local heatmap" font ",30" offset 0, -35.5
+plot "data/local.mat" matrix rowheaders columnheaders using 1:2:3 with image
 
 
+######################
+#    Plot Figure 2   #
+######################
+set origin 0.34,0.1; set size 0.33, 0.9;
+set palette defined (0 '#008000', 0.5 '#ffd700', 1 '#8b0000')
+set cbrange [120:600]
+set title "b) global heatmap"
+plot "data/global.mat" matrix rowheaders columnheaders using 1:2:3 with image
+
+######################
+#    Plot Figure 3   #
+######################
+set origin 0.67,0.1; set size 0.33, 0.9;
+set palette defined (0 '#ffd700', 0.5 '#8b0000', 1 '#110000')
+set cbrange [1000:2000]
+set title "c) naive heatmap"
+plot "data/naive.mat" matrix rowheaders columnheaders using 1:2:3 with image
+
+unset multiplot

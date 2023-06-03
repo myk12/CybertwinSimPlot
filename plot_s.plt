@@ -19,7 +19,7 @@ unset border
 #    Plot Figure 1   #
 ######################
 @SET_FIGURE1_POS
-set key font ",7"
+set key font ",10"
 set xlabel "Time (s)" font ",10"
 set ylabel "Throughput (Mbps)" font ",10"
 set yrange [0:200]
