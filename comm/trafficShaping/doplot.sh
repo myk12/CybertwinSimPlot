@@ -12,6 +12,7 @@ cp $dataPath/cybertwin.log ./$plotData
 echo "[+] processing data"
 awk '/throughput =/ {print $3,$7}' $plotData  > recv.log
 awk '/traffic shaping/ {print $3,$9}' $plotData > shaping.log
+awk '/traffic policing/ {print $3,$9}' $plotData > policing.log
 
 echo "[+] plotting data"
 gnuplot plot.plt

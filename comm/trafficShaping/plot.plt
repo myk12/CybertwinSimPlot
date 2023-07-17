@@ -1,4 +1,4 @@
-set term pdfcairo enhanced color size 10,6 font 'Times,20' 
+set term pdfcairo enhanced color size 20cm,12cm font 'Times,20' 
 set output "shaping.pdf"
 
 set xlabel "time(ms)"
@@ -13,6 +13,7 @@ set linetype 1 linewidth 2
 
 recvData = "recv.log"
 shapingData = "shaping.log"
+policingData = "policing.log"
 
 set style fill border -1
 
@@ -20,3 +21,8 @@ plot recvData using 1:2 title "Received Throughput (Mbps)" with lines linewidth 
     "" using 1:2 title "Received" with filledcurves y1=0  fillstyle transparent solid 0.3, \
     shapingData using 1:2 title "Shaped Throughput (Mbps)" with lines linewidth 3 , \
     "" using 1:2 title "Shaped" with filledcurves y1=0  fillstyle transparent solid 0.3
+
+plot recvData using 1:2 title "Received Throughput (Mbps)" with lines linewidth 3 , \
+    "" using 1:2 title "Received" with filledcurves y1=0  fillstyle transparent solid 0.3, \
+    policingData using 1:2 title "Policed Throughput (Mbps)" with lines linewidth 3 , \
+    "" using 1:2 title "Policed" with filledcurves y1=0  fillstyle transparent solid 0.3
