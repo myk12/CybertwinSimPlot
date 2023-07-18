@@ -2,8 +2,8 @@ set term pdfcairo enhanced color size 50cm, 12cm
 set output 'multipath.pdf'
 set grid
 set grid xtics ytics
-set object 1 rectangle behind from graph 0,0 to graph 1,1 fc rgb "#EFEFEF" fillstyle solid noborder
-unset border
+#set object 1 rectangle behind from graph 0,0 to graph 1,1 fc rgb "#EFEFEF" fillstyle solid noborder
+#unset border
 
 # MACROS
 
@@ -21,25 +21,26 @@ set yrange [0:200]
 set xrange [0:10]
 
 set title "a) Throughput comparision between SP and MP" font ",30" offset 0, -35.5
-plot "SinglePath_100_100.dat" using 1:2 title "SP 100Mbps + 100Mbps" with lines, \
-     "MultiPath_100_100.dat" using 1:2 title  "MP  100Mbps + 100Mbps" with lines
+plot "data/SinglePath_100_100.dat" using 1:2 title "SP 100Mbps + 100Mbps" with lines, \
+     "data/MultiPath_100_100.dat" using 1:2 title  "MP  100Mbps + 100Mbps" with lines
 
+unset ylabel
 ######################
 #    Plot Figure 2   #
 ######################
 set origin 0.34,0.1; set size 0.33, 0.9;
 set title "b) Throughput comparision of SP"
-plot  "SinglePath_50_100.dat" using 1:2 title "SP 50Mbps + 50Mbps" with lines, \
-    "MultiPath_50_50.dat" using 1:2 title "SP 100Mbps + 50Mbps" with lines, \
-    "SinglePath_100_100.dat" using 1:2 title "SP 100Mbps + 100Mbps" with lines
+plot  "data/SinglePath_50_100.dat" using 1:2 title "SP 50Mbps + 50Mbps" with lines, \
+    "data/MultiPath_50_50.dat" using 1:2 title "SP 100Mbps + 50Mbps" with lines, \
+    "data/SinglePath_100_100.dat" using 1:2 title "SP 100Mbps + 100Mbps" with lines
 
 ######################
 #    Plot Figure 3   #
 ######################
 set origin 0.67,0.1; set size 0.33, 0.9;
 set title "c) Throughput comparision of MP"
-plot   "MultiPath_50_50.dat" using 1:2 title    "MP 50Mbps  + 50Mbps" with lines, \
-       "MultiPath_100_50.dat" using 1:2 title   "MP 100Mbps + 50Mbps" with lines, \
-       "MultiPath_100_100.dat" using 1:2 title  "MP 100Mbps + 100Mbps" with lines
+plot   "data/MultiPath_50_50.dat" using 1:2 title    "MP 50Mbps  + 50Mbps" with lines, \
+       "data/MultiPath_100_50.dat" using 1:2 title   "MP 100Mbps + 50Mbps" with lines, \
+       "data/MultiPath_100_100.dat" using 1:2 title  "MP 100Mbps + 100Mbps" with lines
 
 unset multiplot
