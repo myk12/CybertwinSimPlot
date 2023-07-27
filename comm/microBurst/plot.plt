@@ -1,7 +1,9 @@
 # 设置输出为PDF格式
-set terminal pdfcairo enhanced color size 20cm,5cm
+#set terminal pdfcairo enhanced color size 20cm,5cm
 #set object 1 rectangle behind from graph 0,0 to graph 1,1 fc rgb "#EEEEEE" fillstyle solid noborder
-set output "output.pdf"
+set terminal pngcairo enhanced color size 40cm,10cm
+#set size ratio 0.2
+set output "output.png"
 #unset border
 
 # 设置图像的布局为一列三行
