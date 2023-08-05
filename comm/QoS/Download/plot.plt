@@ -1,9 +1,9 @@
 # Set the style for the plot
-set terminal pngcairo enhanced color size 13cm, 10cm font 'Verdana,10' linewidth 2
+set terminal pdfcairo enhanced color size 8cm, 6cm  linewidth 2
 set style data histograms
 set style histogram cluster gap 1
 set grid
-set output 'throughput.png'
+set output 'throughputQoS.pdf'
 
 # Set the x-axis label and range
 set xlabel "Priority"

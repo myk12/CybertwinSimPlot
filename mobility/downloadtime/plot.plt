@@ -1,11 +1,11 @@
 # 设置绘图属性
-set terminal pngcairo enhanced color size 16cm,12cm font 'Times,12' linewidth 2
-set output "output.png"
-set title "Offline Download Time"
-set xlabel "Data Point"
-set ylabel "Download Time"
+set terminal pdfcairo enhanced color size 8cm,6cm  linewidth 2
+#set object 1 rectangle behind from graph 0,0 to graph 1,1 fc rgb "#EFEFEF" fillstyle solid noborder
+set output "mobility.pdf"
+set title "10MB file Download Time of Different Protocols"
+set xlabel "Offline Time (100ms)"
+set ylabel "Download Time (s)"
 set grid
-unset border
 
 # 定义数据文件
 datafile = "offlineDownload.log"
@@ -15,9 +15,9 @@ set yrange [0.8:1.4]
 set ytics 0.8, 0.2, 1.4
 set xrange [0:5]
 
-set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 7 pi -1 ps 1.5
+set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 7 pi -1 ps 1
 set pointintervalbox 3
 
-plot datafile using 0:1 with linespoints pt 5 lw 2  title "Column 1", \
-     datafile using 0:($1+$2) with linespoints pt 5 lw 2 title "Column 1 + Column 2"
+plot datafile using 0:1 with linespoints pt 9 lw 2  title "Cybertwin", \
+     datafile using 0:($1+$2) with linespoints pt 13 lw 2 title "end-to-end"
 
