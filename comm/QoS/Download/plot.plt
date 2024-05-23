@@ -16,7 +16,6 @@ set ylabel "Throughput (Mbps)"
 set yrange [0:100]
 
 # Give a title to the plot
-set title "Throughput Comparison by Priority"
 unset key
 set style fill pattern 1
 # Plot the data from the "throughput.log" file

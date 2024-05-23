@@ -29,16 +29,16 @@ unset ylabel
 #    Plot Figure 2   #
 ######################
 set title "b) MSFP-disabled with different link rates"
-plot  "data/SinglePath_50_100.dat" using 1:2  title "L1  50Mbps, L2  50Mbps" with lines linecolor rgb "#0072BB", \
-    "data/MultiPath_50_50.dat" using 1:2 title "L1 100Mbps, L2  50Mbps" with lines linecolor rgb "#4CAF50", \
-    "data/SinglePath_100_100.dat" using 1:2 title "L1 100Mbps, L2 100Mbps" with lines linecolor rgb "#FF5722"
+plot    "data/SinglePath_100_100.dat" using 1:2 title   "L1 100Mbps, L2 100Mbps"  with lines linecolor rgb "#0072BB", \
+        "data/MultiPath_50_50.dat" using 1:2 title      "L1 100Mbps, L2  50Mbps" with lines linecolor rgb "#4CAF50", \
+        "data/SinglePath_50_100.dat" using 1:2  title   "L1  50Mbps, L2  50Mbps" with lines linecolor rgb "#FF5722"
 
 ######################
 #    Plot Figure 3   #
 ######################
 set title "c) MSFP-enabled with different link rates"
-plot   "data/MultiPath_50_50.dat" using 1:2 title    "L1  50Mbps, L2  50Mbps" with lines linecolor rgb "#0072BB", \
+plot   "data/MultiPath_100_100.dat" using 1:2 title  "L1 100Mbps, L2 100Mbps" with lines linecolor rgb "#0072BB", \
        "data/MultiPath_100_50.dat" using 1:2 title   "L1 100Mbps, L2  50Mbps" with lines linecolor rgb "#4CAF50", \
-       "data/MultiPath_100_100.dat" using 1:2 title  "L1 100Mbps, L2 100Mbps" with lines linecolor rgb "#FF5722"
+       "data/MultiPath_50_50.dat" using 1:2 title    "L1  50Mbps, L2  50Mbps" with lines linecolor rgb "#FF5722"
 
 unset multiplot
