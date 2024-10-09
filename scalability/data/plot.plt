@@ -9,7 +9,6 @@ set ylabel "Value"
 # 设置柱状图参数
 set style data histograms
 set style fill solid
-set boxwidth 0.5
 set xtic rotate by -45 scale 0 font ",8"
 
 # 绘制第一个柱状图（第一列数据）

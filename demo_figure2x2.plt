@@ -1,4 +1,4 @@
-set term pdfcairo enhanced color size 24cm, 5cm
+set term pdfcairo enhanced color size 20cm, 12cm
 set output 'demo_evaluation.pdf'
 set grid
 unset border
@@ -8,13 +8,13 @@ MOBILITY_DIR="mobility/IDRouting/"
 MULTIPATH_DIR="multipath/"
 SECURITYPATH_DIR="security/boxplot/"
 
-set multiplot layout 1,3
+set multiplot layout 2,2
 
 ########################################################
 #              Plot Figure - Mobility Test             #
 ########################################################
 
-set origin 0,0
+set origin 0,0.51
 set key font ",15"
 set datafile separator ","
 
@@ -50,39 +50,58 @@ unset label
 ########################################################
 #              Plot Figure - Multipath Test            #
 ########################################################
-set origin 0.33,0
+set origin 0.5,0.51
 set xlabel "Time (s)"
 set ylabel "Throughput (Mbps)"
 set yrange [0:250]
-set xrange [0:2]
+set xrange [0:7]
 
 plot  MULTIPATH_DIR . "data/MultiPath_100_100.dat" using 1:2 title  "L1 100Mbps, L2 100Mbps" with lines linecolor rgb "#0072BB", \
       MULTIPATH_DIR . "data/MultiPath_100_50.dat" using 1:2 title   "L1 100Mbps, L2  50Mbps" with lines linecolor rgb "#4CAF50", \
       MULTIPATH_DIR . "data/MultiPath_50_50.dat" using 1:2 title    "L1  50Mbps, L2  50Mbps" with lines linecolor rgb "#FF5722"
 
-
 ########################################################
-#              Plot Figure - Security Test            #
+#              Plot Figure - Security Test              #
 ########################################################
-set origin 0.66,0
-# 设置图表样式
-#set title "Throughput vs. Credit Score (Non-Shaped)"
+set origin 0,0.01
 set xlabel "Credit Score"
 set ylabel "Throughput (Mbps)"
 set grid
 
-# 定义文件名列表
+# define the file list
 file_list_nonshape = "nonshape/score10.log nonshape/score20.log nonshape/score30.log nonshape/score40.log nonshape/score50.log nonshape/score60.log nonshape/score70.log nonshape/score80.log nonshape/score90.log"
 
-# 设置箱线图的外观
+# set the box width
 set boxwidth 6
-#set border 2 front lt black linewidth 1.000 dashtype solid
-set style fill solid 0.50 border lt -1
+
+# set the style of the box
+set style fill solid 0.5 border lt -1
 set style data boxplot
 set style boxplot nooutliers
-set style fill solid 0.5 noborder        # 设置填充颜色的透明度为0.5，noborder表示不绘制边框
-set yrange [0:100]
+set style fill solid 0.5 noborder
+set yrange [0:120]
 set xrange [0:100]
 
-# 定义绘制函数
+# define the plot function
 plot for [file in file_list_nonshape] SECURITYPATH_DIR . file using 1:4 with boxplot linetype 1 linecolor rgb "#0072BB" notitle
+
+########################################################
+#              Scalability Test                        #
+########################################################
+set origin 0.5,0.01
+set size 0.5, 0.5
+set grid
+
+# plot the figure as a histogram
+# data file: scalability/runtime.dat
+set xlabel "Node Count"
+set ylabel "Runtime (s)"
+
+set style data histograms
+set style fill solid
+set boxwidth 0.5
+
+plot 'scalability/runtime.dat' using 2:xtic(1) title 'Runtime' with histograms
+
+unset multiplot
+
