@@ -1,4 +1,4 @@
-set term pdfcairo enhanced color size 8cm, 4cm
+set terminal pdfcairo font "Arial,12" enhanced color size 8cm, 4cm
 set output 'scalability.pdf'
 set grid
 unset border
@@ -23,8 +23,8 @@ set y2label "Memory Usage (MB)" font ",12"
 set y2tics
 set format y2 "%.0f"  # 格式化右边的Y轴刻度
 
-set yrange [0:300]
-set y2range [0:300]
+set yrange [0:350]
+set y2range [0:350]
 
 # 设置柱子样式
 set style data histograms

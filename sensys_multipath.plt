@@ -1,4 +1,4 @@
-set term pdfcairo enhanced color size 8cm, 4cm
+set terminal pdfcairo font "Arial,12" enhanced color size 8cm, 4cm
 set output 'multipath.pdf'
 set grid
 unset border
